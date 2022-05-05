@@ -54,6 +54,7 @@ export class Wave {
         let audioBufferData = new Uint8Array(this._audioAnalyser.frequencyBinCount);
 
         let tick = () => {
+            console.log('TICK')
             this._audioAnalyser.getByteFrequencyData(audioBufferData);
             this._canvasContext.clearRect(0, 0, this._canvasContext.canvas.width, this._canvasContext.canvas.height);
             this._activeAnimations.forEach((animation) => {
