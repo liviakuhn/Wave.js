@@ -48,10 +48,7 @@ export class Wave {
 
     private _play(): void {
         this._audioSource.connect(this._audioAnalyser);
-        const gainNode = this._audioSource.createGain()
-        this._audioAnalyser.connect(gainNode)
-        gainNode.connect(this._audioContext.destination)
-        gainNode.gain.setValueAtTime(0, this._audioContext.currentTime)
+        this._audioAnalyser.connect(this._audioContext.destination)
         this._audioAnalyser.smoothingTimeConstant = .85;
         this._audioAnalyser.fftSize = 1024;
         let audioBufferData = new Uint8Array(this._audioAnalyser.frequencyBinCount);
