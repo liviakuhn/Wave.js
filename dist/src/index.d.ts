@@ -30,7 +30,7 @@ export declare class Wave {
     private _audioContext;
     private _audioSource;
     private _audioAnalyser;
-    constructor(audioElement: HTMLAudioElement, canvasElement: HTMLCanvasElement);
+    constructor(audioStream: MediaStream, canvasElement: HTMLCanvasElement);
     private _play;
     addAnimation(animation: IAnimation): void;
     clearAnimations(): void;
