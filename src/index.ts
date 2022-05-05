@@ -26,24 +26,22 @@ export class Wave {
         "Wave": WaveAnimation
     };
     private _activeAnimations: IAnimation[] = [];
-    private _audioElement: HTMLAudioElement;
+    private _audioStream: MediaStream;
     private _canvasElement: HTMLCanvasElement;
     private _canvasContext: CanvasRenderingContext2D;
     private _audioContext: AudioContext;
     private _audioSource: MediaElementAudioSourceNode;
     private _audioAnalyser: AnalyserNode;
 
-    constructor(audioElement: HTMLAudioElement, canvasElement: HTMLCanvasElement) {
-        this._audioElement = audioElement;
+    constructor(audioStream: MediaStream, canvasElement: HTMLCanvasElement) {
+        this._audioStream = audioStream;
         this._canvasElement = canvasElement;
         this._canvasContext = this._canvasElement.getContext("2d");
 
-        this._audioElement.addEventListener("play", () => {
-            this._audioContext = new AudioContext();
-            this._audioSource = this._audioContext.createMediaElementSource(this._audioElement);
-            this._audioAnalyser = this._audioContext.createAnalyser();
-            this._play();
-        }, { once: true });
+        this._audioContext = new AudioContext();
+        this._audioSource = this._audioContext.createMediaStreamSource(this._audioStream);
+        this._audioAnalyser = this._audioContext.createAnalyser();
+        this._play();
     }
 
     private _play(): void {
