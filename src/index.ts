@@ -34,6 +34,7 @@ export class Wave {
     private _audioAnalyser: AnalyserNode;
 
     constructor(audioStream: MediaStream, canvasElement: HTMLCanvasElement) {
+        console.log('CONSTRUCTOR 1')
         this._audioStream = audioStream;
         this._canvasElement = canvasElement;
         this._canvasContext = this._canvasElement.getContext("2d");
@@ -44,6 +45,7 @@ export class Wave {
             this._audioAnalyser = this._audioContext.createAnalyser();
             this._play();
         }, { once: true });
+        console.log('CONSTRUCTOR 2')
     }
 
     private _play(): void {
