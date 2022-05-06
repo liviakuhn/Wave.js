@@ -30,34 +30,27 @@ export class Wave {
     private _canvasElement: HTMLCanvasElement;
     private _canvasContext: CanvasRenderingContext2D;
     private _audioContext: AudioContext;
-    private _audioSource: MediaElementAudioSourceNode;
+    private _audioSource: MediaStreamAudioSourceNode;
     private _audioAnalyser: AnalyserNode;
 
     constructor(audioStream: MediaStream, canvasElement: HTMLCanvasElement) {
-        console.log('CONSTRUCTOR 1')
         this._audioStream = audioStream;
         this._canvasElement = canvasElement;
         this._canvasContext = this._canvasElement.getContext("2d");
 
-        this._audioStream.addEventListener("play", () => {
-            this._audioContext = new AudioContext();
-            this._audioSource = this._audioContext.createMediaElementSource(this._audioStream);
-            this._audioAnalyser = this._audioContext.createAnalyser();
-            this._play();
-        }, { once: true });
-        console.log('CONSTRUCTOR 2')
+        this._audioContext = new AudioContext();
+        this._audioSource = this._audioContext.createMediaStreamSource(this._audioStream);
+        this._audioAnalyser = this._audioContext.createAnalyser();
+        this._play();
     }
 
     private _play(): void {
-        console.log('PLAY')
         this._audioSource.connect(this._audioAnalyser);
-        this._audioAnalyser.connect(this._audioContext.destination)
         this._audioAnalyser.smoothingTimeConstant = .85;
         this._audioAnalyser.fftSize = 1024;
         let audioBufferData = new Uint8Array(this._audioAnalyser.frequencyBinCount);
 
         let tick = () => {
-            console.log('TICK')
             this._audioAnalyser.getByteFrequencyData(audioBufferData);
             this._canvasContext.clearRect(0, 0, this._canvasContext.canvas.width, this._canvasContext.canvas.height);
             this._activeAnimations.forEach((animation) => {
