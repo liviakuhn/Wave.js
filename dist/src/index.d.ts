@@ -24,13 +24,13 @@ export declare class Wave {
         Wave: typeof WaveAnimation;
     };
     private _activeAnimations;
-    private _audioElement;
+    private _audioStream;
     private _canvasElement;
     private _canvasContext;
     private _audioContext;
     private _audioSource;
     private _audioAnalyser;
-    constructor(audioElement: HTMLAudioElement, canvasElement: HTMLCanvasElement);
+    constructor(audioStream: MediaStream, canvasElement: HTMLCanvasElement);
     private _play;
     addAnimation(animation: IAnimation): void;
     clearAnimations(): void;
