@@ -47,6 +47,7 @@ export class Wave {
     }
 
     private _play(): void {
+        console.log('PLAY')
         this._audioSource.connect(this._audioAnalyser);
         this._audioAnalyser.connect(this._audioContext.destination)
         this._audioAnalyser.smoothingTimeConstant = .85;
