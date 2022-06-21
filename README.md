@@ -26,9 +26,9 @@ import {Wave} from "@foobar404/wave";
 # Usage
 
 ```javascript
-let audioElement = document.querySelector("#audioElmId");
+let audioStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false })
 let canvasElement = document.querySelector("#canvasElmId");
-let wave = new Wave(audioElement, canvasElement);
+let wave = new Wave(audioStream, canvasElement);
 
 // Simple example: add an animation
 wave.addAnimation(new wave.animations.Wave());
@@ -52,7 +52,7 @@ wave.addAnimation(new wave.animations.Glob({
     lineColor: "#fff"
 }));
 
-// The animations will start playing when the provided audio element is played
+// The animations will start playing when the provided audio stream's frequencies are non-zero.
 
 // 'wave.animations' is an object with all possible animations on it.
 
