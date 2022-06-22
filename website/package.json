@@ -5,7 +5,7 @@
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@foobar404/wave": "^2.0.3",
-    "@testing-library/react": "^12.1.4",
+    "@testing-library/react": "^12.1.5",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.1",
     "@types/mixpanel-browser": "^2.38.0",
