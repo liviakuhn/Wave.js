@@ -17,7 +17,7 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.4.0",
     "react-scripts": "5.0.0",
-    "typescript": "^4.7.2",
+    "typescript": "^4.7.3",
     "web-vitals": "^2.1.4"
   },
   "homepage": "https://foobar404.github.io/Wave.js/",
